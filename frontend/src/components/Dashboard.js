@@ -229,7 +229,7 @@ export default function Dashboard() {
             ))
         } <
         /select> < /
-        div >
+    div >
 
         { /* Filter Type Radio Buttons */ } {
             selectedPartner && ( <
@@ -298,7 +298,7 @@ export default function Dashboard() {
                 ))
             } <
             /select> < /
-            div >
+        div >
     )
 }
 
@@ -321,7 +321,7 @@ export default function Dashboard() {
             ))
         } <
         /select> < /
-        div >
+    div >
 )
 } <
 /div> < /
