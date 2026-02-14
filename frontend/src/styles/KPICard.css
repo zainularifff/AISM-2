@@ -1,0 +1,57 @@
+/* KPI Card Styles */
+.kpi-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  border-left: 4px solid #0984e3;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.kpi-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.kpi-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #636e72;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.kpi-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2d3436;
+  margin-bottom: 4px;
+}
+
+.kpi-unit {
+  font-size: 13px;
+  color: #95a5a6;
+  font-weight: 500;
+}
+
+.kpi-trend {
+  font-size: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #ecf0f1;
+  color: #636e72;
+}
+
+.kpi-trend.up {
+  color: #2ed573;
+}
+
+.kpi-trend.down {
+  color: #ff4757;
+}
+
+.kpi-trend span {
+  font-weight: 700;
+  margin-right: 4px;
+}

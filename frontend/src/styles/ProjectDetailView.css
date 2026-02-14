@@ -1,0 +1,231 @@
+/* Project Detail View Wrapper */
+.project-detail-view-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Project Detail View Styles */
+.project-detail-view {
+  background: #f5f7fa;
+  padding: 24px;
+  border-radius: 12px;
+  min-height: 100%;
+}
+
+/* Header */
+.view-header {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.header-content h1 {
+  margin: 0 0 8px 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #2d3436;
+}
+
+.client-context {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: #636e72;
+  font-weight: 500;
+}
+
+.header-meta {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  font-size: 13px;
+  color: #95a5a6;
+}
+
+.db-sources,
+.last-updated {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* KPI Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 1200px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 648px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Charts Grid */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.chart-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (max-width: 1200px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-column {
+    gap: 16px;
+  }
+}
+
+/* Analytics Grid */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.analytics-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1200px) {
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Detailed Section */
+.detailed-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+}
+
+.detailed-section h3 {
+  margin: 0 0 20px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d3436;
+}
+
+.lease-details-table {
+  overflow-x: auto;
+}
+
+.lease-details-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.lease-details-table thead {
+  background: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.lease-details-table th,
+.lease-details-table td {
+  padding: 14px;
+  text-align: left;
+}
+
+.lease-details-table th {
+  font-weight: 600;
+  color: #636e72;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.lease-details-table tbody tr {
+  border-bottom: 1px solid #ecf0f1;
+  transition: background 0.2s;
+}
+
+.lease-details-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.lease-details-table td {
+  color: #2d3436;
+}
+
+/* Status indicators */
+.status-active {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #2ed573;
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-maintenance {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #ffa502;
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-idle {
+  display: inline-block;
+  padding: 6px 12px;
+  background: #54a0ff;
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .project-detail-view {
+    padding: 12px;
+  }
+
+  .view-header {
+    padding: 16px;
+  }
+
+  .header-content h1 {
+    font-size: 22px;
+  }
+
+  .lease-details-table th,
+  .lease-details-table td {
+    padding: 10px;
+    font-size: 12px;
+  }
+
+  .header-meta {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+}

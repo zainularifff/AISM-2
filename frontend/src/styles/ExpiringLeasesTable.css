@@ -1,0 +1,108 @@
+/* Expiring Leases Table Styles */
+.expiring-leases-container {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+}
+
+.expiring-leases-container h3 {
+  margin: 0 0 20px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d3436;
+}
+
+.expiring-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.expiring-table thead {
+  background: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.expiring-table th {
+  padding: 14px;
+  text-align: left;
+  font-weight: 600;
+  color: #636e72;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.expiring-table tbody tr {
+  border-bottom: 1px solid #ecf0f1;
+  transition: background-color 0.2s ease;
+}
+
+.expiring-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.expiring-table td {
+  padding: 14px;
+  color: #2d3436;
+  font-size: 14px;
+}
+
+.expiring-table .client-name {
+  font-weight: 600;
+  color: #0984e3;
+}
+
+.expiring-table .days-left {
+  font-weight: 600;
+}
+
+/* Urgency row highlighting */
+.urgency-critical {
+  border-left: 3px solid #ff4757;
+}
+
+.urgency-critical .client-name {
+  color: #ff4757;
+}
+
+.urgency-high {
+  border-left: 3px solid #ffa502;
+}
+
+.urgency-high .client-name {
+  color: #ffa502;
+}
+
+.urgency-warning {
+  border-left: 3px solid #ffd700;
+}
+
+.urgency-normal {
+  border-left: 3px solid #2ed573;
+}
+
+/* Badge styling */
+.urgency-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  min-width: 80px;
+}
+
+@media (max-width: 768px) {
+  .expiring-table th,
+  .expiring-table td {
+    padding: 10px 8px;
+    font-size: 12px;
+  }
+
+  .expiring-table {
+    font-size: 12px;
+  }
+}

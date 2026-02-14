@@ -1,0 +1,138 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database for Partner A
+  postgres_partner_a:
+    image: postgres:14-alpine
+    container_name: postgres_partner_a
+    environment:
+      POSTGRES_USER: partner_a_user
+      POSTGRES_PASSWORD: Partner@123
+      POSTGRES_DB: leasing_hw_sw
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_partner_a_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U partner_a_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - leasing_network
+
+  # PostgreSQL Database for CRM
+  postgres_crm:
+    image: postgres:14-alpine
+    container_name: postgres_crm
+    environment:
+      POSTGRES_USER: crm_user
+      POSTGRES_PASSWORD: CRM@123
+      POSTGRES_DB: crm_data
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_crm_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U crm_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - leasing_network
+
+  # MySQL Database for Helpdesk
+  mysql_helpdesk:
+    image: mysql:8.0
+    container_name: mysql_helpdesk
+    environment:
+      MYSQL_ROOT_PASSWORD: Root@123
+      MYSQL_USER: helpdesk_user
+      MYSQL_PASSWORD: Helpdesk@123
+      MYSQL_DATABASE: helpdesk
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_helpdesk_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - leasing_network
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: leasing_backend
+    ports:
+      - "5000:5000"
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      FRONTEND_URL: http://localhost:3000
+      
+      # PostgreSQL connections
+      DB_USER_PARTNER_A: partner_a_user
+      DB_PASS_PARTNER_A: Partner@123
+      DB_HOST_PARTNER_A: postgres_partner_a
+      DB_PORT_PARTNER_A: 5432
+      
+      DB_USER_CRM: crm_user
+      DB_PASS_CRM: CRM@123
+      DB_HOST_CRM: postgres_crm
+      DB_PORT_CRM: 5432
+      
+      # MySQL connection
+      DB_USER_HELPDESK: helpdesk_user
+      DB_PASS_HELPDESK: Helpdesk@123
+      DB_HOST_HELPDESK: mysql_helpdesk
+      DB_PORT_HELPDESK: 3306
+    
+    depends_on:
+      postgres_partner_a:
+        condition: service_healthy
+      postgres_crm:
+        condition: service_healthy
+      mysql_helpdesk:
+        condition: service_healthy
+    
+    networks:
+      - leasing_network
+    
+    restart: unless-stopped
+
+  # Frontend Application
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: leasing_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_API_URL: http://localhost:5000/api
+      REACT_APP_ENV: production
+    
+    depends_on:
+      - backend
+    
+    networks:
+      - leasing_network
+    
+    restart: unless-stopped
+
+volumes:
+  postgres_partner_a_data:
+    driver: local
+  postgres_crm_data:
+    driver: local
+  mysql_helpdesk_data:
+    driver: local
+
+networks:
+  leasing_network:
+    driver: bridge

@@ -1,0 +1,228 @@
+/**
+ * Dashboard Styles - Redesigned with Navbar
+ */
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #f5f7fa;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Header */
+.dashboard-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 24px 32px;
+    box-shadow: 0 2px 12px rgba(102, 126, 234, 0.15);
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.header-subtitle {
+    margin: 6px 0 0 0;
+    font-size: 0.95rem;
+    opacity: 0.95;
+    font-weight: 300;
+}
+
+/* Navigation Bar */
+.dashboard-navbar {
+    background: white;
+    border-bottom: 1px solid #e9ecef;
+    padding: 16px 32px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+}
+
+.navbar-content {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.nav-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 200px;
+}
+
+.nav-section label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #495057;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.nav-select {
+    padding: 8px 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 180px;
+}
+
+.nav-select:hover {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.nav-select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
+/* Radio Group */
+.radio-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #495057;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.radio-label input[type="radio"] {
+    cursor: pointer;
+    accent-color: #667eea;
+}
+
+.radio-label:hover {
+    color: #667eea;
+}
+
+/* Main Content */
+.dashboard-main {
+    flex: 1;
+    padding: 32px;
+    overflow-y: auto;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    gap: 20px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #e9ecef;
+    border-top-color: #667eea;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-spinner p {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+/* Error Message */
+.error-message {
+    background: #fff5f5;
+    border-left: 4px solid #ff4757;
+    padding: 16px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+    color: #c92a2a;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.error-message strong {
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .dashboard-header {
+        padding: 20px 24px;
+    }
+
+    .dashboard-main {
+        padding: 20px;
+    }
+
+    .navbar-content {
+        gap: 16px;
+    }
+
+    .nav-section {
+        min-width: 150px;
+    }
+
+    .radio-group {
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-navbar {
+        overflow-x: auto;
+        padding: 12px 16px;
+    }
+
+    .navbar-content {
+        gap: 12px;
+    }
+
+    .nav-section {
+        min-width: 140px;
+    }
+
+    .nav-select {
+        min-width: 120px;
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
+
+    .radio-label {
+        font-size: 0.85rem;
+    }
+
+    .dashboard-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .dashboard-main {
+        padding: 16px;
+    }
+}
