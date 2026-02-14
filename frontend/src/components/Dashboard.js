@@ -149,12 +149,12 @@ export default function Dashboard() {
 
                 // Backend returns: { success: true, data: { partner, filterType, data: [...] } }
                 // response.data is already the dashboardData object
-                const dashData = response?.data || {};
+                const dashData = (response && response.data) || {};
                 setDashboardData({
                     allPartners: false,
                     partner: dashData.partner || {
                         id: selectedPartner,
-                        name: partners.find(p => p.id === selectedPartner)?.name || ''
+                        name: (partners.find(p => p.id === selectedPartner) && partners.find(p => p.id === selectedPartner).name) || ''
                     },
                     filterType: dashData.filterType || filterType,
                     data: Array.isArray(dashData.data) ? dashData.data : []
