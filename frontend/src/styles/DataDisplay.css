@@ -122,9 +122,18 @@
 /* Statistics Grid */
 .statistics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 15px;
   margin-bottom: 20px;
+}
+
+/* Main dashboard header - 3 columns */
+.combined-header .statistics-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Project card level - 4 columns */
+.project-card .statistics-grid {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .stat-card {

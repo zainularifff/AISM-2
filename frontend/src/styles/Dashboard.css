@@ -12,10 +12,10 @@
 
 /* Header */
 .dashboard-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(90deg, #1e5a77 0%, #26b99a 100%);
     color: white;
     padding: 24px 32px;
-    box-shadow: 0 2px 12px rgba(102, 126, 234, 0.15);
+    box-shadow: 0 2px 12px rgba(30, 90, 119, 0.2);
 }
 
 .dashboard-header h1 {
@@ -23,13 +23,6 @@
     font-size: 2.2rem;
     font-weight: 700;
     letter-spacing: -0.5px;
-}
-
-.header-subtitle {
-    margin: 6px 0 0 0;
-    font-size: 0.95rem;
-    opacity: 0.95;
-    font-weight: 300;
 }
 
 /* Navigation Bar */

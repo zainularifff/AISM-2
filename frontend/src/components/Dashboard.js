@@ -71,7 +71,8 @@ export default function Dashboard() {
         const loadClients = async() => {
             try {
                 const response = await dashboardService.getClients(selectedPartner, selectedProject);
-                setClients(response.data.data);
+                // service returns axios response.data (e.g. { success: true, data: [...] })
+                setClients(response && response.data ? response.data : []);
                 setSelectedClient(null);
             } catch (err) {
                 console.error('Error loading clients:', err);
@@ -97,11 +98,11 @@ export default function Dashboard() {
                                 partner.id,
                                 'all'
                             );
-                            if (response.data && response.data.data) {
+                            if (response && response.data) {
                                 allProjectsData.push({
                                     partnerId: partner.id,
                                     partnerName: partner.name,
-                                    projects: response.data.data
+                                    projects: response.data
                                 });
                             }
                         } catch (err) {
@@ -146,9 +147,17 @@ export default function Dashboard() {
                     clientId
                 );
 
+                // Backend returns: { success: true, data: { partner, filterType, data: [...] } }
+                // response.data is already the dashboardData object
+                const dashData = response?.data || {};
                 setDashboardData({
                     allPartners: false,
-                    ...response.data
+                    partner: dashData.partner || {
+                        id: selectedPartner,
+                        name: partners.find(p => p.id === selectedPartner)?.name || ''
+                    },
+                    filterType: dashData.filterType || filterType,
+                    data: Array.isArray(dashData.data) ? dashData.data : []
                 });
                 setError(null);
             } catch (err) {
@@ -196,8 +205,7 @@ export default function Dashboard() {
         <div className="dashboard-container">
             {/* Header */}
             <header className="dashboard-header">
-                <h1>PC Leasing Dashboard</h1>
-                <p className="header-subtitle">Multi-Partner, Multi-Project Management System</p>
+                <h1>nPoint Management Dashboard</h1>
             </header>
 
             {/* Navigation Bar (Filters) */}
