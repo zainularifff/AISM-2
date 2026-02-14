@@ -91,7 +91,7 @@ export default function Dashboard() {
                     setLoading(true);
                     // Create combined dashboard data from all partners
                     const allProjectsData = [];
-                    
+
                     for (const partner of partners) {
                         try {
                             const response = await dashboardService.getDashboardData(
@@ -149,12 +149,12 @@ export default function Dashboard() {
 
                 // Backend returns: { success: true, data: { partner, filterType, data: [...] } }
                 // response.data is already the dashboardData object
-                const dashData = response?.data || {};
+                const dashData = response ? .data || {};
                 setDashboardData({
                     allPartners: false,
                     partner: dashData.partner || {
                         id: selectedPartner,
-                        name: partners.find(p => p.id === selectedPartner)?.name || ''
+                        name: partners.find(p => p.id === selectedPartner) ? .name || ''
                     },
                     filterType: dashData.filterType || filterType,
                     data: Array.isArray(dashData.data) ? dashData.data : []
@@ -201,135 +201,153 @@ export default function Dashboard() {
         setFilterType('client');
     };
 
-    return (
-        <div className="dashboard-container">
-            {/* Header */}
-            <header className="dashboard-header">
-                <h1>nPoint Management Dashboard</h1>
-            </header>
+    return ( <
+        div className = "dashboard-container" > { /* Header */ } <
+        header className = "dashboard-header" >
+        <
+        h1 > nPoint Management Dashboard < /h1> <
+        /header>
 
-            {/* Navigation Bar (Filters) */}
-            <nav className="dashboard-navbar">
-                <div className="navbar-content">
-                    {/* Partner Selector */}
-                    <div className="nav-section">
-                        <label>PARTNER:</label>
-                        <select 
-                            value={selectedPartner || ''} 
-                            onChange={(e) => e.target.value ? handlePartnerChange(e.target.value) : handleClearPartner()}
-                            className="nav-select"
-                        >
-                            <option value="">All Partners</option>
-                            {partners.map(partner => (
-                                <option key={partner.id} value={partner.id}>
-                                    {partner.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
+        { /* Navigation Bar (Filters) */ } <
+        nav className = "dashboard-navbar" >
+        <
+        div className = "navbar-content" > { /* Partner Selector */ } <
+        div className = "nav-section" >
+        <
+        label > PARTNER: < /label> <
+        select value = { selectedPartner || '' }
+        onChange = {
+            (e) => e.target.value ? handlePartnerChange(e.target.value) : handleClearPartner() }
+        className = "nav-select" >
+        <
+        option value = "" > All Partners < /option> {
+            partners.map(partner => ( <
+                option key = { partner.id }
+                value = { partner.id } > { partner.name } <
+                /option>
+            ))
+        } <
+        /select> <
+        /div>
 
-                    {/* Filter Type Radio Buttons */}
-                    {selectedPartner && (
-                        <div className="nav-section">
-                            <label>VIEW LEVEL:</label>
-                            <div className="radio-group">
-                                <label className="radio-label">
-                                    <input
-                                        type="radio"
-                                        name="filterType"
-                                        value="all"
-                                        checked={filterType === 'all'}
-                                        onChange={(e) => handleFilterChange(e.target.value)}
-                                    />
-                                    All Projects & Clients
-                                </label>
-                                <label className="radio-label">
-                                    <input
-                                        type="radio"
-                                        name="filterType"
-                                        value="project"
-                                        checked={filterType === 'project'}
-                                        onChange={(e) => handleFilterChange(e.target.value)}
-                                    />
-                                    By Project
-                                </label>
-                                <label className="radio-label">
-                                    <input
-                                        type="radio"
-                                        name="filterType"
-                                        value="client"
-                                        checked={filterType === 'client'}
-                                        onChange={(e) => handleFilterChange(e.target.value)}
-                                    />
-                                    By Client
-                                </label>
-                            </div>
-                        </div>
-                    )}
+        { /* Filter Type Radio Buttons */ } {
+            selectedPartner && ( <
+                div className = "nav-section" >
+                <
+                label > VIEW LEVEL: < /label> <
+                div className = "radio-group" >
+                <
+                label className = "radio-label" >
+                <
+                input type = "radio"
+                name = "filterType"
+                value = "all"
+                checked = { filterType === 'all' }
+                onChange = {
+                    (e) => handleFilterChange(e.target.value) }
+                />
+                All Projects & Clients <
+                /label> <
+                label className = "radio-label" >
+                <
+                input type = "radio"
+                name = "filterType"
+                value = "project"
+                checked = { filterType === 'project' }
+                onChange = {
+                    (e) => handleFilterChange(e.target.value) }
+                />
+                By Project <
+                /label> <
+                label className = "radio-label" >
+                <
+                input type = "radio"
+                name = "filterType"
+                value = "client"
+                checked = { filterType === 'client' }
+                onChange = {
+                    (e) => handleFilterChange(e.target.value) }
+                />
+                By Client <
+                /label> <
+                /div> <
+                /div>
+            )
+        }
 
-                    {/* Project Selector */}
-                    {selectedPartner && (filterType === 'project' || filterType === 'client') && projects.length > 0 && (
-                        <div className="nav-section">
-                            <label>PROJECT:</label>
-                            <select 
-                                value={selectedProject || ''} 
-                                onChange={(e) => handleProjectSelect(e.target.value)}
-                                className="nav-select"
-                            >
-                                <option value="">Select Project</option>
-                                {projects.map(project => (
-                                    <option key={project.id} value={project.id}>
-                                        {project.name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                    )}
+        { /* Project Selector */ } {
+            selectedPartner && (filterType === 'project' || filterType === 'client') && projects.length > 0 && ( <
+                div className = "nav-section" >
+                <
+                label > PROJECT: < /label> <
+                select value = { selectedProject || '' }
+                onChange = {
+                    (e) => handleProjectSelect(e.target.value) }
+                className = "nav-select" >
+                <
+                option value = "" > Select Project < /option> {
+                    projects.map(project => ( <
+                        option key = { project.id }
+                        value = { project.id } > { project.name } <
+                        /option>
+                    ))
+                } <
+                /select> <
+                /div>
+            )
+        }
 
-                    {/* Client Selector */}
-                    {selectedPartner && filterType === 'client' && selectedProject && clients.length > 0 && (
-                        <div className="nav-section">
-                            <label>CLIENT:</label>
-                            <select 
-                                value={selectedClient || ''} 
-                                onChange={(e) => handleClientSelect(e.target.value)}
-                                className="nav-select"
-                            >
-                                <option value="">Select Client</option>
-                                {clients.map(client => (
-                                    <option key={client.id} value={client.id}>
-                                        {client.name}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                    )}
-                </div>
-            </nav>
+        { /* Client Selector */ } {
+            selectedPartner && filterType === 'client' && selectedProject && clients.length > 0 && ( <
+                div className = "nav-section" >
+                <
+                label > CLIENT: < /label> <
+                select value = { selectedClient || '' }
+                onChange = {
+                    (e) => handleClientSelect(e.target.value) }
+                className = "nav-select" >
+                <
+                option value = "" > Select Client < /option> {
+                    clients.map(client => ( <
+                        option key = { client.id }
+                        value = { client.id } > { client.name } <
+                        /option>
+                    ))
+                } <
+                /select> <
+                /div>
+            )
+        } <
+        /div> <
+        /nav>
 
-            {/* Main Content */}
-            <main className="dashboard-main">
-                {error && (
-                    <div className="error-message">
-                        🔴 <strong>Error:</strong> {error}
-                    </div>
-                )}
+        { /* Main Content */ } <
+        main className = "dashboard-main" > {
+            error && ( <
+                div className = "error-message" > 🔴 < strong > Error: < /strong> {error} <
+                /div>
+            )
+        }
 
-                {loading && (
-                    <div className="loading-spinner">
-                        <div className="spinner"></div>
-                        <p>Loading dashboard data...</p>
-                    </div>
-                )}
+        {
+            loading && ( <
+                div className = "loading-spinner" >
+                <
+                div className = "spinner" > < /div> <
+                p > Loading dashboard data... < /p> <
+                /div>
+            )
+        }
 
-                {dashboardData && !loading && (
-                    <DataDisplay
-                        data={dashboardData}
-                        onProjectSelect={handleProjectSelect}
-                        onClientSelect={handleClientSelect}
-                    />
-                )}
-            </main>
-        </div>
+        {
+            dashboardData && !loading && ( <
+                DataDisplay data = { dashboardData }
+                onProjectSelect = { handleProjectSelect }
+                onClientSelect = { handleClientSelect }
+                />
+            )
+        } <
+        /main> <
+        /div>
     );
 }
